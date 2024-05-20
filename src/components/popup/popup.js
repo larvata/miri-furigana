@@ -18,8 +18,8 @@ function fillText(id, textOrKey, useKey) {
     : textOrKey;
 }
 
-const broadcast = (event, value) => {
-  chrome.tabs.query({ url: 'https://*.twitter.com/*' }, (tabs) => {
+const broadcast = (event, value, query) => {
+  chrome.tabs.query({ url: query }, (tabs) => {
     if (!tabs.length) {
       return;
     }
@@ -49,7 +49,8 @@ function prepareToggleButton(initValue) {
     };
     chrome.storage.sync.set(saveData);
 
-    broadcast(MIRI_EVENTS.TOGGLE_EXTENSION, enabled);
+    broadcast(MIRI_EVENTS.TOGGLE_EXTENSION, enabled, 'https://*.x.com/*');
+    broadcast(MIRI_EVENTS.TOGGLE_EXTENSION, enabled, 'https://*.twitter.com/*');
   });
 }
 
@@ -163,7 +164,7 @@ chrome.storage.sync.get([
 document.querySelector('.feedback').addEventListener('click', () => {
   // e.preventDefault();
   chrome.tabs.create({
-    url: 'https://twitter.com/ctx_mirigana',
+    url: 'https://x.com/ctx_mirigana',
     active: true,
   });
   return false;
