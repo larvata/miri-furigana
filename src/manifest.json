@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "mirigana",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "default_locale": "en",
 
   "description": "__MSG_extension_description__",
@@ -45,7 +45,7 @@
   },
 
   "content_scripts": [{
-    "matches": ["https://twitter.com/*"],
+    "matches": ["https://twitter.com/*", "https://x.com/*"],
     "js": [
       "constants.js",
       "content_scripts/console.js",

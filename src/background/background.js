@@ -136,7 +136,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // disable page action icon for the site other than twitter.com
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (tab.url.match(/^https:\/\/twitter.com\//)) {
+  if (tab.url.match(/^https:\/\/twitter.com\//)
+    || tab.url.match(/^https:\/\/x.com\//)) {
     chrome.pageAction.show(tabId);
   } else {
     chrome.pageAction.hide(tabId);
